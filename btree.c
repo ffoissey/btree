@@ -22,7 +22,7 @@ t_tree		*btree_new(void const *data, size_t data_size)
 
 static void	btree_sub_add(t_tree *root, t_tree *new, int (*f)(void *, void *))
 {
-	if (root != NULL && f(root->data, new->data) > 0)
+	if (root != NULL && f(root->data, new->data) < 0)
 	{
 		if (root->left != LEAF)
 		{
@@ -43,9 +43,6 @@ static void	btree_sub_add(t_tree *root, t_tree *new, int (*f)(void *, void *))
 			root->right = new;
 	}
 	new->parent = root;
-/*	new->left = LEAF;
-	new->right = LEAF;
-	new->color = RED;*/
 }
 
 t_tree	*btree_add_extend(t_tree *root, t_tree *new, int (*f)(void *, void *))
